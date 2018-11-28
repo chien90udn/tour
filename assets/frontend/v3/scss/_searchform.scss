@@ -1,0 +1,38 @@
+/*search form overview*/
+#main-search #container-search input.tags_holiday{width:230px;float:left;color:#946A25;}
+.search:-webkit-autofill{background:#e5d8c5 !important;}
+.search::-webkit-input-placeholder{color:#d9bf82 !important;}
+.search::-moz-placeholder{color:#d9bf82 !important;}
+#main-search{width:100%;background:#E2D8C8;padding:25px 0;float:left;}
+#search-bestcruise{width:100%;margin:30px 0 0 0;border-top:1px solid #e5e5e5;padding:20px 0;background:#E1E1E6;}
+#container-search{width:100%;float:left;}
+#container-search #left-txt{width:175px;border-right:1px solid #ccc;padding:15px 15px 15px 0;margin-right:15px;float:left;}
+#container-search #left-txt h2{width:100%;font-size:14px;font-family:'Arial', serif;float:left;text-transform:uppercase;padding-top:2px;font-weight: bold;}
+#container-search #left-txt span{width:200px;font-size:12px;color:#888;float:left;}
+#container-search .ui-tabs{width:860px;margin:5px 0 15px 0;float:left;}
+#container-search .ui-tabs .ui-tabs-nav .ui-state-default .ui-tabs-anchor{height:30px;width:150px;text-align:center;background:#d9d9c0;color:#fff;line-height:27px;padding:0;margin:0 10px 0 0;float:left;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;transition:all 0.35s;position:relative;}
+#container-search .ui-tabs .ui-tabs-nav .ui-state-default .ui-tabs-anchor:hover, #container-search .ui-tabs .ui-tabs-nav .ui-state-default.ui-tabs-active .ui-tabs-anchor{background:#6a9e42;}
+#container-search .ui-tabs .ui-tabs-nav .ui-state-default .ui-tabs-anchor:hover span.nav, #container-search .ui-tabs .ui-tabs-nav .ui-state-default.ui-tabs-active span.nav{width:10px;height:5px;background:url(../images/sprite.png) -440px -390px no-repeat;float:left;position:absolute;left:50%;margin-left:-5px;bottom:-5px;}
+#container-search .ui-tabs-panel{width:860px;height:35px;float:left;}
+#box-input{margin-right:22px;background:#fff;border:1px solid #111;float:left;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;position:relative;}
+#box-input .icon-select{width:12px;height:7px;background:url(../images/sprite.png) -70px -360px no-repeat;float:left;position:absolute;right:10px;top:12px;}
+#box-input input{line-height:16px;font-family: 'Arial',sans-serif;font-size:14px;height:33px;background:none;border:none;padding:0 30px 0 10px;float:left;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;color:#946A25;}
+#box-input input::-webkit-input-placeholder{color:#666;font-size:14px;line-height:14px;letter-spacing:1px;font-family:'Arial', serif;}
+#box-input input.des-date{width:180px;}
+#box-input input.duration-cruise{width:150px;}
+#box2-input{height:33px;background:#fff;margin-right:8px;border:1px solid #ccc;float:left;-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;position:relative;}
+#box2-input a.icon-select{width:12px;height:7px;background:url(../images/sprite.png) -70px -360px no-repeat;float:left;position:absolute;right:8px;top:14px;}
+#box2-input input{color:#666;height:100%;background:none;border:none;padding:0 10px;float:left;-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;font-size:14px;line-height: 100%;}
+#box2-input input::-webkit-input-placeholder{color:#666;font-size:14px;line-height:14px;letter-spacing:1px;font-family:'Arial', serif;}
+#box2-input input.des-date{width:180px;}
+#box2-input input.duration-cruise{width:202px;}
+#box2-input select{height:100%;color:#666;border:none;}
+#box2-input select.duration-cruise{width:200px;padding: 8px 12px;font-size: 14px;}
+#box2-input .input-day {width: 100%;float: left;height: 100%;}
+#box2-input select.des-date{padding: 6px 12px;width: 156px;margin-top: 0;font-size: 14px;height: 100%;}
+#container-search a.bt-search{width:172px;height:33px;background:#d19650;font-family:'Arial', serif;padding-left:20px;letter-spacing:1px;color:#fff;line-height:33px;text-transform:uppercase;float:left;transition:all 0.35s;font-weight:bold}
+#container-search a.bt-search span.icon{width:31px;height:31px;margin:2px 0 0 10px;background:url(../images/sprite.png) -3px -201px no-repeat;float:right;}
+#container-search a.bt-search:hover{background:#BC7D31;}
+#container-search a.bt-search i{float:right;font-size:23px;padding:6px 5px 4px 9px;background:#BC7D31;}
+#container-search a.bt-search:hover i{background:#d19650;}
+/*end search form overview*/

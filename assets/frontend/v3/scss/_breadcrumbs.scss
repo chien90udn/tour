@@ -1,0 +1,26 @@
+.breadcrumbs{
+    margin: 15px 0 0 0;
+    font-size: 12px;
+	ul{
+		li{
+			@include middle;
+			a{
+				&:after{
+					content:'';
+					width: 6px;
+				    height: 9px;
+				    margin: 6px 10px;
+				    background: url(../images/sprite.png) -522px -34px no-repeat;
+			        @include middle;
+			        margin: 0 6px;
+				}
+			}
+			span.i-home {
+		        width: 16px;
+			    height: 21px;
+			    background: url(../images/sprite.png) -500px -28px no-repeat;
+			    @include middle;
+			}
+		}
+	}
+}
