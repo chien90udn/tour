@@ -51,7 +51,7 @@ class UserPermissionsSeeder extends Seeder
                 'name' => 'accounts.groups.create'
             ]),
             new UserPermission([
-                'title' => 'Sửa nhómtài khoản',
+                'title' => 'Sửa nhóm tài khoản',
                 'name' => 'accounts.groups.edit'
             ]),
             new UserPermission([
