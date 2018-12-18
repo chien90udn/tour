@@ -2849,7 +2849,7 @@ ul.tabs li:hover {
     display: table;
 }
 .mobilecallicons {
-    display: none!important;
+    display: block!important;
 }
 }
 .tabs-container .tabs-controls ul.tabs li {
@@ -3057,6 +3057,7 @@ ul.tabs li:hover {
     position: relative;
     overflow: hidden;
     margin: 15px 0;
+	    margin-bottom: 0;
 }
 .dicoverpic.small-hight-image img {
     height: 100%!important;
@@ -7734,6 +7735,13 @@ a.view_overlay.play span {
 	#search-popup .search-btn01 {
 		margin-top: 15px;
 	}
+	.middle {
+    top: 65%;
+}
+.dicoverpic {
+    margin: 8px 0;
+	margin-bottom: 0;
+}
 }
 @media only screen and (max-width: 767px) {
 	.overlay {

@@ -85,7 +85,7 @@
 
 #nav-mobile {
 	position: fixed;
-    top: auto;
+    top: 0;
     left: auto;
     display: block;
     z-index: 9999;
@@ -157,7 +157,7 @@
 
 #nav-mobile {
 	position: fixed;
-    top: auto;
+    top: 4px;
     left: auto;
     display: block;
     z-index: 9999;
@@ -228,7 +228,7 @@
 
 #nav-mobile {
 	position: fixed;
-    top: auto;
+    top: 4px;
     left: auto;
     display: block;
     z-index: 9999;

@@ -1,0 +1,152 @@
+
+<html>
+
+<body>
+
+ <link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="stylesheet" href="css/datepicker/bootstrap-datepicker3.css" />
+<link rel="stylesheet" href="css/font-awesome.css" />
+<link rel="stylesheet" href="css/font-awesome.min.css" />
+<link rel="stylesheet" href="css/icon-fontfamily.css" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/mobilenav.css" />
+<link rel="stylesheet" href="css/lightslider/lightslider.css" />
+
+
+<body>
+                <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+                    <li data-thumb="//pix6.agoda.net/hotelImages/108/10875/10875_17052212330053137108.jpg"> 
+                        <img src="//pix6.agoda.net/hotelImages/108/10875/10875_17052212330053137108.jpg" />
+                         </li>
+                    <li data-thumb="//pix6.agoda.net/hotelImages/108/10875/10875_17052212340053137121.jpg"> 
+                        <img src="//pix6.agoda.net/hotelImages/108/10875/10875_17052212340053137121.jpg" />
+                         </li>
+                    <li data-thumb="//pix6.agoda.net/hotelImages/108/10875/10875_17052212340053137136.jpg"> 
+                        <img src="//pix6.agoda.net/hotelImages/108/10875/10875_17052212340053137136.jpg" />
+                         </li>
+                    <li data-thumb="//pix6.agoda.net/hotelImages/108/10875/10875_17052212350053137149.jpg"> 
+                        <img src="//pix6.agoda.net/hotelImages/108/10875/10875_17052212350053137149.jpg" />
+                         </li>
+                </ul>
+</body>
+   
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="css/lightslider/lightslider.js"></script>
+<script type="text/javascript" src="css/datepicker/bootstrap-datepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="dfgdgjs/agency.min.js"></script>
+<script>
+$('.demo-1,.demo-2,.demo-3').datepicker();
+</script>
+<script>
+    	 $(document).ready(function() {
+            $('#image-gallery').lightSlider({
+                gallery:true,
+                item:1,
+                thumbItem:9,
+                slideMargin: 0,
+                speed:500,
+                auto:true,
+                loop:true,
+                onSliderLoad: function() {
+                    $('#image-gallery').removeClass('cS-hidden');
+                }  
+            });
+		});
+    </script>
+<script>
+   function changeValue(o){
+     document.getElementById('type').value=o.innerHTML;
+    }
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".tophead").affix({
+        offset: { 
+            top: $(".headernavshow").outerHeight(true)
+        }
+    });
+	$('.menu-open').click(function(){
+	$('.nav-mobile').toggle();
+	});
+	$('textarea#type').click(function(){
+	   $('.room_type_picker').toggleClass('picker-open');
+	});
+	$('.Popup__content span').click(function(){
+	  $('.room_type_picker').removeClass('picker-open');
+	});
+	$('.room-image-holder').on('click', function(){
+	 var tab_id = $(this).attr('data-type');
+	     $('.room-image-holder').removeClass('active');
+	     $('.ReactModalPortal').removeClass('popup-open');
+		 
+		 $(this).addClass('active');
+		 $("#"+tab_id).addClass('popup-open');
+		 
+	});
+	$('span.close-area-icon').click(function(){
+	   $('.ReactModalPortal').removeClass('popup-open');
+	   $('.room-image-holder').removeClass('active');
+	});
+	$('.thumbnail-wrapper').on('click', function(){
+	 var tab_an = $(this).attr('data-tab');
+	     $('.thumbnail-wrapper').removeClass('active');
+	     $('.swipe-element').removeClass('active');
+		 
+		 $(this).addClass('active');
+		 $("#"+tab_an).addClass('active');
+		 
+	});
+});
+</script>
+
+<script>
+$(document).ready(function () {
+  var trigger = $('.hamburger'),
+      overlay = $('.overlay'),
+     isClosed = false;
+
+    trigger.click(function () {
+      hamburger_cross();      
+    });
+
+    function hamburger_cross() {
+
+      if (isClosed == true) {          
+        overlay.hide();
+        trigger.removeClass('is-open');
+        trigger.addClass('is-closed');
+        isClosed = false;
+      } else {   
+        overlay.show();
+        trigger.removeClass('is-closed');
+        trigger.addClass('is-open');
+        isClosed = true;
+      }
+  }
+  
+  $('[data-toggle="offcanvas"]').click(function () {
+        $('#wrapper').toggleClass('toggled');
+  });  
+  
+  $(".menuopen").on("click", function(){
+  $(".menuopen").not(this).parent().find('ul').hide();
+   $(this).parent().find('ul').slideToggle();
+});
+});
+jQuery(function($)
+ { 
+ 
+jQuery('a[href^="#"]').on('click',function(){
+    event.preventDefault();
+    var target_offset = $(this.hash).offset() ? $(this.hash).offset().top : 0;
+    //change this number to create the additional off set        
+    var customoffset =0;
+    jQuery('html, body').animate({scrollTop:target_offset - customoffset}, 900);
+});
+ 
+}(jQuery));
+</script>
+	</body></html>

@@ -5,11 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Thailand Private Travel</title>
 <link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="stylesheet" href="css/datepicker/bootstrap-datepicker3.css" />
 <link rel="stylesheet" href="css/font-awesome.css" />
 <link rel="stylesheet" href="css/font-awesome.min.css" />
 <link rel="stylesheet" href="css/icon-fontfamily.css" />
 <link rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" href="css/mobilenav.css" />
+<link rel="stylesheet" href="css/lightslider/lightslider.css" />
 
 
 </head>
@@ -306,40 +308,55 @@
 		<div class="rating-icon"><img src="images/rating-2.png" alt="" >Best Price Guarantee</div>
 		</div>
 	  </div>
-	  <div class="hotel-check-color">
-         <div tabindex="0" class="IconBox IconBox--checkIn col-md-3 col-sm-2 col-xs-12" data-element-name="check-in-box">
+	  <div class="hotel-check-color input-daterange input-group demo-3" id="datepicker">
+         <div tabindex="0" class="IconBox IconBox--checkIn col-md-3 col-sm-3 col-xs-12" data-element-name="check-in-box">
             <div class="IconBox__wrapper">
                <div class="IconBox__child">
                   <div data-selenium="checkInBox" data-date="2018-11-24" class="SearchBoxTextDescription SearchBoxTextDescription--checkIn">
-                     <div class="SearchBoxTextDescription__title" data-selenium="checkInText">Check in</div>
+                     <div class="SearchBoxTextDescription__title" data-selenium="checkInText">
+						<input type="text" class="input-sm form-control check_in_date" name="start" placeholder="Check in">
+					 </div>
                   </div>
                </div>
 			   <i class="fa fa-calendar calendar-icon " aria-hidden="true"></i>
             </div>
          </div>
-         <div tabindex="0" class="IconBox IconBox--checkOut  col-md-3 col-sm-2 col-xs-12" data-element-name="check-out-box">
+         <div tabindex="0" class="IconBox IconBox--checkOut  col-md-3 col-sm-3 col-xs-12" data-element-name="check-out-box">
             <div class="IconBox__wrapper">
                <div class="IconBox__child">
                   <div data-selenium="checkOutBox" data-date="2018-11-29" class="SearchBoxTextDescription SearchBoxTextDescription--checkOut">
-                     <div class="SearchBoxTextDescription__title" data-selenium="checkOutText">Check out</div>
+                     <div class="SearchBoxTextDescription__title" data-selenium="checkOutText">
+					    <input type="text" class="input-sm form-control" name="end" placeholder="Check out">
+					 </div>
                   </div>
                </div>
 			    <i class="fa fa-calendar calendar-icon " aria-hidden="true"></i>
             </div>
          </div>
-         <div tabindex="0" class="IconBox IconBox--occupancy  col-md-3 col-sm-4 col-xs-12" data-element-name="occupancy-box">
+         <div tabindex="0" class="IconBox IconBox--occupancy  col-md-3 col-sm-3 col-xs-12" data-element-name="occupancy-box">
             <div class="IconBox__wrapper border-all">
                <div class="IconBox__child">
                   <div data-selenium="occupancyBox" class="SearchBoxTextDescription SearchBoxTextDescription--occupancy">
-                     <div class="SearchBoxTextDescription__title"><span data-selenium="adultValue">1 Room(s), 2 Adult(s), 0 Children</span></div>
+                     <div class="SearchBoxTextDescription__title"><span data-selenium="adultValue"><textarea type="text" id="type" name="type" placeholder="1 Room(s), 2 Adult(s), 0 Children" readonly/></textarea></span>
+					 
+					 </div>
                   </div>
                </div>
+			   <div class="Popup__container Popup__container--sliding room_type_picker">
+			   <div class="Popup RangePicker RangePicker--checkIn" data-selenium="rangePickerCheckIn" data-element-name="search-box-check-in"><div class="Popup__content">
+		 <div class="SearchBoxTextDescription__title">
+			<span id="room-1" onclick="changeValue(this)">1 Room(s), 2 Adult(s), 0 Children</span>
+			<span id="room-2" onclick="changeValue(this)">2 Room(s), 3 Adult(s), 1 Children</span>
+			<span id="room-3" onclick="changeValue(this)">3 Room(s), 4 Adult(s), 2 Children</span>
+			<span id="room-4" onclick="changeValue(this)">4 Room(s), 5 Adult(s), 3 Children</span>
+		 </div>
+		 </div></div></div>
             </div>
          </div>
-		 <div tabindex="0" class="IconBox IconBox--occupancy search-button-border  col-md-3 col-sm-4 col-xs-12" data-element-name="occupancy-box">
-         <button class="btn Searchbox__searchButton Searchbox__searchButton--active  " data-selenium="searchButton" data-element-name="search-button"><span class="Searchbox__searchButton__text">Check Room Rates <i class="fa fa-arrow-right search-right-arrow" aria-hidden="true"></i></span></button>
+		 <div tabindex="0" class="IconBox IconBox--occupancy search-button-border  col-md-3 col-sm-3 col-xs-12" data-element-name="occupancy-box">
+         <button class="btn Searchbox__searchButton Searchbox__searchButton--active  " data-selenium="searchButton" data-element-name="search-button"><span class="Searchbox__searchButton__text">Check Room Rates<i class="fa fa-long-arrow-right search-right-arrow"></i></span></button>
 		 </div>
-         <div class="Popup__container Popup__container--sliding"></div>
+         
       </div>
 	  </div>
    </div>
@@ -380,9 +397,41 @@
                   <span class="hotel-header-info-locationhighlight-text"> - 240 meters to the beach</span>
                   <div class="hotel-header-info-whatisnearby-inline"><span class="WhatIsNearbyEntry"> - 
                      What's nearby?</span>
+					 <div class="rc-tooltipsss image fav-features-tooltip rc-tooltip-placement-top  "><div class="rc-tooltip-content"><div class="rc-tooltip-inner"><div class="image-wrapper"><figure>
+			<ul class="near_bich">
+				<li class="bg_color_li">Most popular landmarks</li>
+				<li>Patong Beach-1.29 km</li>
+				<li>Karon Beach-4.87km</li>
+				<li>Wat Chalong-7.17km</li>
+				<li>Phuket Big Buddha-7.23km</li>
+				<li>Kata Beach-7.45km</li>
+				<li>Kamala Beach-7.62km</li>
+				<li>Phuket Fanta Sea-7.68km</li>
+				<li>Surin Beach-9.92km</li>
+				<li>Nai Harn Beach-12.48km</li>
+				<li>Promthep Cape-14.39km</li>
+			</ul>
+			<ul class="near_bich sec_beach_div">
+				<li class="bg_color_li">Closest landmarks</li>
+				<li>Malin Plaza Patong-830 m</li>
+				<li>John International Tailor-850 m</li>
+				<li>Tarin Thai Boxing-1.02 km</li>
+				<li>Pum Thai Cooking School-1.22 km</li>
+				<li>Patong Beach-1.29 km</li>
+				<li>Tri Trang Beach-1.35 km</li>
+				<li>Bangla Road-1.38 km</li>
+				<li>Bangla Mall-1.46 km</li>
+				<li>Patong Football Club-1.5 km</li>
+				<li>Ocean Plaza Patong-1.51 km</li>
+			</ul>
+			</figure></div></div></div></div>
                   </div>
                </div>
+			   <div class="hotel-header-info-booking">
+				<span class="hotel-header-info-locationrating-text" >6,297  </span>booking confirmed so far this week in the patong area in phuket
+			   </div>
             </div>
+			
          </div>
          <div class="review-branding review-branding--hotel" data-element-name="review-header" data-selenium="hotel-header-review-rating" data-based-on-provider-id="3038">
             <div class="review-branding-section">
@@ -404,6 +453,7 @@
                   <div class="ReviewScore ReviewScore--outline"><i class="ficon ficon-review-line ReviewScore-Icon"></i><span class="ReviewScore-Number" data-selenium="hotel-header-subreview-score">9.3</span></div>
                </div>
             </div>
+			<div class="review-recommendation-score"><span>Recommended by <strong>95</strong><strong>%</strong> of guests</span></div>
          </div>
       </div>
 	  <div id="property-root">
@@ -449,9 +499,10 @@
       </div>
       <ul class="FavFeatures__List">
          <li class="FavFeatures__Item FavFeatures__Item--4" data-element-name="property-top-feature" data-element-value="17" data-element-index="0" data-element-identifier="">
-            <div class="rc-tooltip__binder">
+            <div class="rc-tooltip__binder hover-text-show">
                <i class="FavFeatures__Icon ficon ficon-airport-transfer ficon-green ficon-32"></i>
                <p class="FavFeatures__Text ">Airport transfer <i class="ficon ficon-10 ficon-hover-details"></i></p>
+			   <div class="rc-tooltips image fav-features-tooltip rc-tooltip-placement-top  "><div class="rc-tooltip-content"><div class="rc-tooltip-arrow"></div><div class="rc-tooltip-inner"><div class="image-wrapper"><figure><p>Airport transfer available! Additional charges may apply.To request,check the box on the booking form just before the payment page</p></figure></div></div></div></div>
             </div>
          </li>
          <li class="FavFeatures__Item FavFeatures__Item--4" data-element-name="property-top-feature" data-element-value="287" data-element-index="1" data-element-identifier="">
@@ -476,10 +527,11 @@
       </ul>
    </section>
    <div id="property-dateless-roomgrid" class="property-dateless-roomgrid row" data-selenium="dateless-roomgrid">
+   <div class="reccomendedheading">Recommend Room Type:</div>
       <div class="dateless-roomgrid">
          
          <div class="room col-md-6 col-sm-12">
-            <div class="room-image-holder col-md-6 col-sm-6">
+            <div class="room-image-holder col-md-6 col-sm-6" data-type="2-bedroom-suite-balcony">
                <img src="//pix6.agoda.net/hotelImages/108/10875/10875_17052211290053135889.jpg" alt="2 Bedroom Suite Balcony">
                <div class="room-gallery-link"><i class="ficon ficon-20 ficon-map-attraction"></i><span>See photos and details</span></div>
             </div>
@@ -494,12 +546,12 @@
                      <li class="room-amenitylist-item" data-element-name="dateless-room-amenity" data-element-value="1" data-element-index="5873148"><i class="ficon ficon-20 ficon-views"></i><span>Ocean view</span></li>
                      <li class="room-amenitylist-item" data-element-name="dateless-room-amenity" data-element-value="15" data-element-index="5873148"><i class="ficon ficon-20 ficon-bed"></i><span>1 king bed</span></li>
                   </ul>
-                  <div class="room-prompt-for-dates"><span>Enter dates to see prices</span></div>
+                  <div class="room-prompt-for-dates click_show_date"><span>Enter dates to see prices</span></div>
                </div>
             </div>
          </div>
          <div class="room col-md-6 col-sm-12">
-            <div class="room-image-holder col-md-6 col-sm-6">
+            <div class="room-image-holder col-md-6 col-sm-6" data-type="3-bedroom-suite-balcony">
                <img src="//pix6.agoda.net/hotelImages/108/10875/10875_17052212070053136527.jpg" alt="One Bedroom Suite Ocean View">
                <div class="room-gallery-link"><i class="ficon ficon-20 ficon-map-attraction"></i><span>See photos and details</span></div>
             </div>
@@ -514,12 +566,12 @@
                      <li class="room-amenitylist-item" data-element-name="dateless-room-amenity" data-element-value="1" data-element-index="4032398"><i class="ficon ficon-20 ficon-views"></i><span>Ocean view</span></li>
                      <li class="room-amenitylist-item" data-element-name="dateless-room-amenity" data-element-value="15" data-element-index="4032398"><i class="ficon ficon-20 ficon-bed"></i><span>1 double bed</span></li>
                   </ul>
-                  <div class="room-prompt-for-dates"><span>Enter dates to see prices</span></div>
+                  <div class="room-prompt-for-dates click_show_date"><span>Enter dates to see prices</span></div>
                </div>
             </div>
          </div>
          <div class="room col-md-6 col-sm-12">
-            <div class="room-image-holder col-md-6 col-sm-6">
+            <div class="room-image-holder col-md-6 col-sm-6" data-type="4-bedroom-suite-balcony">
                <img src="//pix6.agoda.net/hotelImages/108/10875/10875_15061910170029999310.jpg" alt="Deluxe Ocean View">
                <div class="room-gallery-link"><i class="ficon ficon-20 ficon-map-attraction"></i><span>See photos and details</span></div>
             </div>
@@ -534,12 +586,12 @@
                      <li class="room-amenitylist-item" data-element-name="dateless-room-amenity" data-element-value="1" data-element-index="3084337"><i class="ficon ficon-20 ficon-views"></i><span>Ocean view</span></li>
                      <li class="room-amenitylist-item" data-element-name="dateless-room-amenity" data-element-value="15" data-element-index="3084337"><i class="ficon ficon-20 ficon-bed"></i><span>1 double bed</span></li>
                   </ul>
-                  <div class="room-prompt-for-dates"><span>Enter dates to see prices</span></div>
+                  <div class="room-prompt-for-dates click_show_date"><span>Enter dates to see prices</span></div>
                </div>
             </div>
          </div>
          <div class="room col-md-6 col-sm-12">
-            <div class="room-image-holder col-md-6 col-sm-6">
+            <div class="room-image-holder col-md-6 col-sm-6" data-type="5-bedroom-suite-balcony">
                <img src="//pix6.agoda.net/hotelImages/108/10875/10875_17052212330053137108.jpg" alt="2-Bedroom Ocean-Facing Suite">
                <div class="room-gallery-link"><i class="ficon ficon-20 ficon-map-attraction"></i><span>See photos and details</span></div>
             </div>
@@ -554,12 +606,12 @@
                      <li class="room-amenitylist-item" data-element-name="dateless-room-amenity" data-element-value="1" data-element-index="4032405"><i class="ficon ficon-20 ficon-views"></i><span>Partial ocean view</span></li>
                      <li class="room-amenitylist-item" data-element-name="dateless-room-amenity" data-element-value="15" data-element-index="4032405"><i class="ficon ficon-20 ficon-bed"></i><span>2 single beds and 1 double ...</span></li>
                   </ul>
-                  <div class="room-prompt-for-dates"><span>Enter dates to see prices</span></div>
+                  <div class="room-prompt-for-dates click_show_date"><span>Enter dates to see prices</span></div>
                </div>
             </div>
          </div>
          <div class="room col-md-6 col-sm-12">
-            <div class="room-image-holder col-md-6 col-sm-6">
+            <div class="room-image-holder col-md-6 col-sm-6" data-type="6-bedroom-suite-balcony">
                <img src="//pix6.agoda.net/hotelImages/108/10875/10875_15061910210029999722.jpg" alt="Superior Ocean View">
                <div class="room-gallery-link"><i class="ficon ficon-20 ficon-map-attraction"></i><span>See photos and details</span></div>
             </div>
@@ -574,12 +626,12 @@
                      <li class="room-amenitylist-item" data-element-name="dateless-room-amenity" data-element-value="1" data-element-index="3084328"><i class="ficon ficon-20 ficon-views"></i><span>Ocean view</span></li>
                      <li class="room-amenitylist-item" data-element-name="dateless-room-amenity" data-element-value="15" data-element-index="3084328"><i class="ficon ficon-20 ficon-bed"></i><span>1 double bed</span></li>
                   </ul>
-                  <div class="room-prompt-for-dates"><span>Enter dates to see prices</span></div>
+                  <div class="room-prompt-for-dates click_show_date"><span>Enter dates to see prices</span></div>
                </div>
             </div>
          </div>
          <div class="room col-md-6 col-sm-12">
-            <div class="room-image-holder col-md-6 col-sm-6">
+            <div class="room-image-holder col-md-6 col-sm-6" data-type="7-bedroom-suite-balcony">
                <img src="//pix6.agoda.net/hotelImages/108/10875/10875_14071615500020296682.jpg" alt="Superior Ocean Facing">
                <div class="room-gallery-link"><i class="ficon ficon-20 ficon-map-attraction"></i><span>See photos and details</span></div>
             </div>
@@ -594,12 +646,12 @@
                      <li class="room-amenitylist-item" data-element-name="dateless-room-amenity" data-element-value="1" data-element-index="3084329"><i class="ficon ficon-20 ficon-views"></i><span>Partial ocean view</span></li>
                      <li class="room-amenitylist-item" data-element-name="dateless-room-amenity" data-element-value="15" data-element-index="3084329"><i class="ficon ficon-20 ficon-bed"></i><span>1 king bed</span></li>
                   </ul>
-                  <div class="room-prompt-for-dates"><span>Enter dates to see prices</span></div>
+                  <div class="room-prompt-for-dates click_show_date"><span>Enter dates to see prices</span></div>
                </div>
             </div>
          </div>
          <div class="room col-md-6 col-sm-12">
-            <div class="room-image-holder col-md-6 col-sm-6">
+            <div class="room-image-holder col-md-6 col-sm-6" data-type="8-bedroom-suite-balcony">
                <img src="//pix6.agoda.net/hotelImages/108/10875/10875_17052211590053136329.jpg" alt="One Bedroom Suite">
                <div class="room-gallery-link"><i class="ficon ficon-20 ficon-map-attraction"></i><span>See photos and details</span></div>
             </div>
@@ -614,12 +666,12 @@
                      <li class="room-amenitylist-item" data-element-name="dateless-room-amenity" data-element-value="1" data-element-index="4032392"><i class="ficon ficon-20 ficon-views"></i><span>Nature view</span></li>
                      <li class="room-amenitylist-item" data-element-name="dateless-room-amenity" data-element-value="15" data-element-index="4032392"><i class="ficon ficon-20 ficon-bed"></i><span>1 double bed</span></li>
                   </ul>
-                  <div class="room-prompt-for-dates"><span>Enter dates to see prices</span></div>
+                  <div class="room-prompt-for-dates click_show_date"><span>Enter dates to see prices</span></div>
                </div>
             </div>
          </div>
          <div class="room col-md-6 col-sm-12">
-            <div class="room-image-holder col-md-6 col-sm-6">
+            <div class="room-image-holder col-md-6 col-sm-6" data-type="9-bedroom-suite-balcony">
                <img src="//pix6.agoda.net/hotelImages/108/10875/10875_17052212030053136432.jpg" alt="One Bedroom Suite Ocean Front">
                <div class="room-gallery-link"><i class="ficon ficon-20 ficon-map-attraction"></i><span>See photos and details</span></div>
             </div>
@@ -634,12 +686,12 @@
                      <li class="room-amenitylist-item" data-element-name="dateless-room-amenity" data-element-value="1" data-element-index="4032393"><i class="ficon ficon-20 ficon-views"></i><span>Partial ocean view</span></li>
                      <li class="room-amenitylist-item" data-element-name="dateless-room-amenity" data-element-value="15" data-element-index="4032393"><i class="ficon ficon-20 ficon-bed"></i><span>1 double bed</span></li>
                   </ul>
-                  <div class="room-prompt-for-dates"><span>Enter dates to see prices</span></div>
+                  <div class="room-prompt-for-dates click_show_date"><span>Enter dates to see prices</span></div>
                </div>
             </div>
          </div>
          <div class="room col-md-6 col-sm-12">
-            <div class="room-image-holder col-md-6 col-sm-6">
+            <div class="room-image-holder col-md-6 col-sm-6" data-type="10-bedroom-suite-balcony">
                <img src="//pix6.agoda.net/hotelImages/108/10875/10875_17052211230053135683.jpg" alt="1 Bedroom Suite Balcony">
                <div class="room-gallery-link"><i class="ficon ficon-20 ficon-map-attraction"></i><span>See photos and details</span></div>
             </div>
@@ -654,12 +706,12 @@
                      <li class="room-amenitylist-item" data-element-name="dateless-room-amenity" data-element-value="1" data-element-index="5873084"><i class="ficon ficon-20 ficon-views"></i><span>Ocean view</span></li>
                      <li class="room-amenitylist-item" data-element-name="dateless-room-amenity" data-element-value="15" data-element-index="5873084"><i class="ficon ficon-20 ficon-bed"></i><span>1 king bed</span></li>
                   </ul>
-                  <div class="room-prompt-for-dates"><span>Enter dates to see prices</span></div>
+                  <div class="room-prompt-for-dates click_show_date"><span>Enter dates to see prices</span></div>
                </div>
             </div>
          </div>
          <div class="room col-md-6 col-sm-12">
-            <div class="room-image-holder col-md-6 col-sm-6">
+            <div class="room-image-holder col-md-6 col-sm-6" data-type="11-bedroom-suite-balcony">
                <img src="//pix6.agoda.net/hotelImages/108/10875/10875_17052212400053137201.jpg" alt="Deluxe Ocean View Twin">
                <div class="room-gallery-link"><i class="ficon ficon-20 ficon-map-attraction"></i><span>See photos and details</span></div>
             </div>
@@ -673,7 +725,7 @@
                      <li class="room-amenitylist-item" data-element-name="dateless-room-amenity" data-element-value="1" data-element-index="51183200"><i class="ficon ficon-20 ficon-views"></i><span>Ocean view</span></li>
                      <li class="room-amenitylist-item" data-element-name="dateless-room-amenity" data-element-value="15" data-element-index="51183200"><i class="ficon ficon-20 ficon-bed"></i><span>2 single beds</span></li>
                   </ul>
-                  <div class="room-prompt-for-dates"><span>Enter dates to see prices</span></div>
+                  <div class="room-prompt-for-dates click_show_date"><span>Enter dates to see prices</span></div>
                </div>
             </div>
          </div>
@@ -741,6 +793,58 @@
    </div>
 </div>
   
+<div class="realtedhotels">
+<div class="container">
+<div class="reccomendedheading">SIMILAR HOTELS YOU MAY LIKE</div>
+<div class="reccomendedsubheading">Below is a selection of other great hotels which also offer <br>comfort, quality and incredible value.<span> = = =</span></div>
+<div class="row rlthtl">
+<div class="col-md-4 col-sm-12 rlthtl-part">
+            <div class="related-hotel-image">
+               <img src="//pix6.agoda.net/hotelImages/108/10875/10875_17052211290053135889.jpg" alt="2 Bedroom Suite Balcony">
+               <div class="similer_hotal-content">
+			     <h3 class="title_similar">Park Hyatt Saigon</h3>
+				 <span>Ho Chi Minh City</span>
+				 <i class="fa fa-star"></i>
+			   </div>
+            </div>
+</div>
+<div class="col-md-4 col-sm-12 rlthtl-part">
+            <div class="related-hotel-image">
+               <img src="//pix6.agoda.net/hotelImages/108/10875/10875_17052211290053135889.jpg" alt="2 Bedroom Suite Balcony">
+               <div class="similer_hotal-content">
+			     <h3 class="title_similar">Princess D Annam Resort & Spa</h3>
+				 <span>Phan Thiet</span>
+				 <i class="fa fa-star"></i>
+			   </div>
+            </div>
+</div>
+<div class="col-md-4 col-sm-12 rlthtl-part">
+            <div class="related-hotel-image">
+               <img src="//pix6.agoda.net/hotelImages/108/10875/10875_17052211290053135889.jpg" alt="2 Bedroom Suite Balcony">
+               <div class="similer_hotal-content">
+			     <h3 class="title_similar">La Residence Hotel & Spa</h3>
+				 <span>Hue</span>
+				 <i class="fa fa-star"></i>
+			   </div>
+            </div>
+</div>
+<div class="col-md-12 col-sm-12">
+
+<div class="col-md-2 col-sm-12">
+</div>
+<div class="col-md-8 col-sm-12 related-hotel-btn">
+
+            <a href="#"class="">
+               
+               View More
+            </a>
+			</div>
+			<div class="col-md-2 col-sm-12">
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 <div class="tailor-made-holiday">
@@ -834,13 +938,1949 @@
 </div>
 </div>
 
+<div class="ReactModalPortal" id="2-bedroom-suite-balcony">
+  <div class="ReactModal__Overlay ReactModal__Overlay--after-open" style="position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; background: rgba(0, 0, 0, 0.8);">
+    <div class="ReactModal__Content ReactModal__Content--after-open qa-room-info-modal room-info-modal gallery-modal" tabindex="-1" aria-label="Modal" style="overflow: hidden;">
+      <div class="room-info" data-element-name="room-info-popup">
+        <div class="close-area qa-room-info-close-area room-info-close-area">
+          <span class="close-area-icon ficon ficon-22 ficon-x-icon">
+          </span>
+        </div>
+        <div class="details">
+          <div class="details__header details__header_shadowed">
+            <p class="details__header-text" data-selenium="details__header-text">2-Bedroom Ocean-Facing Suite
+            </p>
+          </div>
+          <div class="details__info-area" style="height: calc(100% - 108px);">
+            <div class="details__info-area-block details__features details__info-area-block_padding-top" data-selenium="Features">
+              <p class="details__info-area-block-header">Features
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-sqm details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Room size: 78 m²/840 ft²
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-views details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Partial ocean view
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-balcony-terrace details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Balcony/terrace
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-shower details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Shower
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-kitchenette details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Kitchenette
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="details__info-area-block details__amenities details__info-area-block_padding-top details__info-area-block_prelined">
+              <p class="details__info-area-block-header">Bathroom and toiletries
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-bathrobes details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Bathrobes
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-hair-dryer  details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Hair dryer
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-mirror details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Mirror
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-toiletries details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Toiletries
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-towels details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Towels
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="details__info-area-block details__amenities">
+              <p class="details__info-area-block-header">Entertainment 
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-dvd-cd-player details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">DVD/CD player
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-free-wifi-in-all-rooms details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Free Wi-Fi in all rooms!
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-inhouse-movies details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">On-demand movies
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-satellite-television details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Satellite/cable channels
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-telephone details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Telephone
+                  </span>
+                </li>
+              </ul>
+            </div>
+           
+          </div>
+        </div>
+        <div class="gallery">
+          <div class="react-swipe-container swipe" style="visibility: visible;">
+			 <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:480px;overflow:hidden;visibility:hidden;">
+							<!-- Loading Screen -->
+							<div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+								<img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+							</div>
+							<div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
+								<div>
+									<img data-u="image" src="images/travel-4.jpg" />
+									<img data-u="thumb" src="images/travel-4.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-1.jpg" />
+									<img data-u="thumb" src="images/travel-1.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-2.jpg" />
+									<img data-u="thumb" src="images/travel-2.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-3.jpg" />
+									<img data-u="thumb" src="images/travel-3.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-5.jpg" />
+									<img data-u="thumb" src="images/travel-5.jpg" />
+								</div>
+								
+							</div>
+							<!-- Thumbnail Navigator -->
+							<div data-u="thumbnavigator" class="jssort101" style="position:absolute;left:0px;bottom:0px;width:980px;height:100px;background-color:#000;" data-autocenter="1" data-scale-bottom="0.75">
+								<div data-u="slides">
+									<div data-u="prototype" class="p" style="width:190px;height:84px;">
+										<div data-u="thumbnailtemplate" class="t"></div>
+										<svg viewBox="0 0 16000 16000" class="cv">
+											<circle class="a" cx="8000" cy="8000" r="3238.1"></circle>
+											<line class="a" x1="6190.5" y1="8000" x2="9809.5" y2="8000"></line>
+											<line class="a" x1="8000" y1="9809.5" x2="8000" y2="6190.5"></line>
+										</svg>
+									</div>
+								</div>
+							</div>
+							<!-- Arrow Navigator -->
+							<div data-u="arrowleft" class="jssora106" style="width:55px;height:55px;top:162px;left:30px;" data-scale="0.75">
+								<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+									<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+									<polyline class="a" points="7930.4,5495.7 5426.1,8000 7930.4,10504.3 "></polyline>
+									<line class="a" x1="10573.9" y1="8000" x2="5426.1" y2="8000"></line>
+								</svg>
+							</div>
+							<div data-u="arrowright" class="jssora106" style="width:55px;height:55px;top:162px;right:30px;" data-scale="0.75">
+								<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+									<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+									<polyline class="a" points="8069.6,5495.7 10573.9,8000 8069.6,10504.3 "></polyline>
+									<line class="a" x1="5426.1" y1="8000" x2="10573.9" y2="8000"></line>
+								</svg>
+							</div>
+						</div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ReactModalPortal" id="3-bedroom-suite-balcony">
+  <div class="ReactModal__Overlay ReactModal__Overlay--after-open" style="position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; background: rgba(0, 0, 0, 0.8);">
+    <div class="ReactModal__Content ReactModal__Content--after-open qa-room-info-modal room-info-modal gallery-modal" tabindex="-1" aria-label="Modal" style="overflow: hidden;">
+      <div class="room-info" data-element-name="room-info-popup">
+        <div class="close-area qa-room-info-close-area room-info-close-area">
+          <span class="close-area-icon ficon ficon-22 ficon-x-icon">
+          </span>
+        </div>
+        <div class="details">
+          <div class="details__header details__header_shadowed">
+            <p class="details__header-text" data-selenium="details__header-text">2-Bedroom Ocean-Facing Suite
+            </p>
+          </div>
+          <div class="details__info-area" style="height: calc(100% - 108px);">
+            <div class="details__info-area-block details__features details__info-area-block_padding-top" data-selenium="Features">
+              <p class="details__info-area-block-header">Features
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-sqm details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Room size: 78 m²/840 ft²
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-views details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Partial ocean view
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-balcony-terrace details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Balcony/terrace
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-shower details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Shower
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-kitchenette details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Kitchenette
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="details__info-area-block details__amenities details__info-area-block_padding-top details__info-area-block_prelined">
+              <p class="details__info-area-block-header">Bathroom and toiletries
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-bathrobes details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Bathrobes
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-hair-dryer  details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Hair dryer
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-mirror details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Mirror
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-toiletries details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Toiletries
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-towels details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Towels
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="details__info-area-block details__amenities">
+              <p class="details__info-area-block-header">Entertainment 
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-dvd-cd-player details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">DVD/CD player
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-free-wifi-in-all-rooms details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Free Wi-Fi in all rooms!
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-inhouse-movies details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">On-demand movies
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-satellite-television details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Satellite/cable channels
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-telephone details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Telephone
+                  </span>
+                </li>
+              </ul>
+            </div>
+           
+          </div>
+        </div>
+        <div class="gallery">
+          <div class="react-swipe-container swipe" style="visibility: visible;">
+            <div id="jssor_2" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:480px;overflow:hidden;visibility:hidden;">
+							<!-- Loading Screen -->
+							<div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+								<img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+							</div>
+							<div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
+								<div>
+									<img data-u="image" src="images/travel-4.jpg" />
+									<img data-u="thumb" src="images/travel-4.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-1.jpg" />
+									<img data-u="thumb" src="images/travel-1.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-2.jpg" />
+									<img data-u="thumb" src="images/travel-2.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-3.jpg" />
+									<img data-u="thumb" src="images/travel-3.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-5.jpg" />
+									<img data-u="thumb" src="images/travel-5.jpg" />
+								</div>
+								
+							</div>
+							<!-- Thumbnail Navigator -->
+							<div data-u="thumbnavigator" class="jssort101" style="position:absolute;left:0px;bottom:0px;width:980px;height:100px;background-color:#000;" data-autocenter="1" data-scale-bottom="0.75">
+								<div data-u="slides">
+									<div data-u="prototype" class="p" style="width:190px;height:84px;">
+										<div data-u="thumbnailtemplate" class="t"></div>
+										<svg viewBox="0 0 16000 16000" class="cv">
+											<circle class="a" cx="8000" cy="8000" r="3238.1"></circle>
+											<line class="a" x1="6190.5" y1="8000" x2="9809.5" y2="8000"></line>
+											<line class="a" x1="8000" y1="9809.5" x2="8000" y2="6190.5"></line>
+										</svg>
+									</div>
+								</div>
+							</div>
+							<!-- Arrow Navigator -->
+							<div data-u="arrowleft" class="jssora106" style="width:55px;height:55px;top:162px;left:30px;" data-scale="0.75">
+								<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+									<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+									<polyline class="a" points="7930.4,5495.7 5426.1,8000 7930.4,10504.3 "></polyline>
+									<line class="a" x1="10573.9" y1="8000" x2="5426.1" y2="8000"></line>
+								</svg>
+							</div>
+							<div data-u="arrowright" class="jssora106" style="width:55px;height:55px;top:162px;right:30px;" data-scale="0.75">
+								<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+									<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+									<polyline class="a" points="8069.6,5495.7 10573.9,8000 8069.6,10504.3 "></polyline>
+									<line class="a" x1="5426.1" y1="8000" x2="10573.9" y2="8000"></line>
+								</svg>
+							</div>
+						</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ReactModalPortal" id="4-bedroom-suite-balcony">
+  <div class="ReactModal__Overlay ReactModal__Overlay--after-open" style="position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; background: rgba(0, 0, 0, 0.8);">
+    <div class="ReactModal__Content ReactModal__Content--after-open qa-room-info-modal room-info-modal gallery-modal" tabindex="-1" aria-label="Modal" style="overflow: hidden;">
+      <div class="room-info" data-element-name="room-info-popup">
+        <div class="close-area qa-room-info-close-area room-info-close-area">
+          <span class="close-area-icon ficon ficon-22 ficon-x-icon">
+          </span>
+        </div>
+        <div class="details">
+          <div class="details__header details__header_shadowed">
+            <p class="details__header-text" data-selenium="details__header-text">2-Bedroom Ocean-Facing Suite
+            </p>
+          </div>
+          <div class="details__info-area" style="height: calc(100% - 108px);">
+            <div class="details__info-area-block details__features details__info-area-block_padding-top" data-selenium="Features">
+              <p class="details__info-area-block-header">Features
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-sqm details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Room size: 78 m²/840 ft²
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-views details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Partial ocean view
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-balcony-terrace details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Balcony/terrace
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-shower details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Shower
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-kitchenette details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Kitchenette
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="details__info-area-block details__amenities details__info-area-block_padding-top details__info-area-block_prelined">
+              <p class="details__info-area-block-header">Bathroom and toiletries
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-bathrobes details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Bathrobes
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-hair-dryer  details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Hair dryer
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-mirror details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Mirror
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-toiletries details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Toiletries
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-towels details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Towels
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="details__info-area-block details__amenities">
+              <p class="details__info-area-block-header">Entertainment 
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-dvd-cd-player details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">DVD/CD player
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-free-wifi-in-all-rooms details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Free Wi-Fi in all rooms!
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-inhouse-movies details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">On-demand movies
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-satellite-television details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Satellite/cable channels
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-telephone details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Telephone
+                  </span>
+                </li>
+              </ul>
+            </div>
+           
+          </div>
+        </div>
+        <div class="gallery">
+          <div class="react-swipe-container swipe" style="visibility: visible;">
+            <div id="jssor_3" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:480px;overflow:hidden;visibility:hidden;">
+							<!-- Loading Screen -->
+							<div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+								<img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+							</div>
+							<div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
+								<div>
+									<img data-u="image" src="images/travel-4.jpg" />
+									<img data-u="thumb" src="images/travel-4.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-1.jpg" />
+									<img data-u="thumb" src="images/travel-1.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-2.jpg" />
+									<img data-u="thumb" src="images/travel-2.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-3.jpg" />
+									<img data-u="thumb" src="images/travel-3.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-5.jpg" />
+									<img data-u="thumb" src="images/travel-5.jpg" />
+								</div>
+								
+							</div>
+							<!-- Thumbnail Navigator -->
+							<div data-u="thumbnavigator" class="jssort101" style="position:absolute;left:0px;bottom:0px;width:980px;height:100px;background-color:#000;" data-autocenter="1" data-scale-bottom="0.75">
+								<div data-u="slides">
+									<div data-u="prototype" class="p" style="width:190px;height:84px;">
+										<div data-u="thumbnailtemplate" class="t"></div>
+										<svg viewBox="0 0 16000 16000" class="cv">
+											<circle class="a" cx="8000" cy="8000" r="3238.1"></circle>
+											<line class="a" x1="6190.5" y1="8000" x2="9809.5" y2="8000"></line>
+											<line class="a" x1="8000" y1="9809.5" x2="8000" y2="6190.5"></line>
+										</svg>
+									</div>
+								</div>
+							</div>
+							<!-- Arrow Navigator -->
+							<div data-u="arrowleft" class="jssora106" style="width:55px;height:55px;top:162px;left:30px;" data-scale="0.75">
+								<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+									<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+									<polyline class="a" points="7930.4,5495.7 5426.1,8000 7930.4,10504.3 "></polyline>
+									<line class="a" x1="10573.9" y1="8000" x2="5426.1" y2="8000"></line>
+								</svg>
+							</div>
+							<div data-u="arrowright" class="jssora106" style="width:55px;height:55px;top:162px;right:30px;" data-scale="0.75">
+								<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+									<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+									<polyline class="a" points="8069.6,5495.7 10573.9,8000 8069.6,10504.3 "></polyline>
+									<line class="a" x1="5426.1" y1="8000" x2="10573.9" y2="8000"></line>
+								</svg>
+							</div>
+						</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ReactModalPortal" id="5-bedroom-suite-balcony">
+  <div class="ReactModal__Overlay ReactModal__Overlay--after-open" style="position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; background: rgba(0, 0, 0, 0.8);">
+    <div class="ReactModal__Content ReactModal__Content--after-open qa-room-info-modal room-info-modal gallery-modal" tabindex="-1" aria-label="Modal" style="overflow: hidden;">
+      <div class="room-info" data-element-name="room-info-popup">
+        <div class="close-area qa-room-info-close-area room-info-close-area">
+          <span class="close-area-icon ficon ficon-22 ficon-x-icon">
+          </span>
+        </div>
+        <div class="details">
+          <div class="details__header details__header_shadowed">
+            <p class="details__header-text" data-selenium="details__header-text">2-Bedroom Ocean-Facing Suite
+            </p>
+          </div>
+          <div class="details__info-area" style="height: calc(100% - 108px);">
+            <div class="details__info-area-block details__features details__info-area-block_padding-top" data-selenium="Features">
+              <p class="details__info-area-block-header">Features
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-sqm details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Room size: 78 m²/840 ft²
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-views details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Partial ocean view
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-balcony-terrace details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Balcony/terrace
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-shower details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Shower
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-kitchenette details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Kitchenette
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="details__info-area-block details__amenities details__info-area-block_padding-top details__info-area-block_prelined">
+              <p class="details__info-area-block-header">Bathroom and toiletries
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-bathrobes details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Bathrobes
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-hair-dryer  details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Hair dryer
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-mirror details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Mirror
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-toiletries details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Toiletries
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-towels details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Towels
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="details__info-area-block details__amenities">
+              <p class="details__info-area-block-header">Entertainment 
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-dvd-cd-player details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">DVD/CD player
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-free-wifi-in-all-rooms details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Free Wi-Fi in all rooms!
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-inhouse-movies details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">On-demand movies
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-satellite-television details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Satellite/cable channels
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-telephone details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Telephone
+                  </span>
+                </li>
+              </ul>
+            </div>
+           
+          </div>
+        </div>
+        <div class="gallery">
+          <div class="react-swipe-container swipe" style="visibility: visible;">
+            <div id="jssor_4" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:480px;overflow:hidden;visibility:hidden;">
+							<!-- Loading Screen -->
+							<div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+								<img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+							</div>
+							<div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
+								<div>
+									<img data-u="image" src="images/travel-4.jpg" />
+									<img data-u="thumb" src="images/travel-4.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-1.jpg" />
+									<img data-u="thumb" src="images/travel-1.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-2.jpg" />
+									<img data-u="thumb" src="images/travel-2.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-3.jpg" />
+									<img data-u="thumb" src="images/travel-3.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-5.jpg" />
+									<img data-u="thumb" src="images/travel-5.jpg" />
+								</div>
+								
+							</div>
+							<!-- Thumbnail Navigator -->
+							<div data-u="thumbnavigator" class="jssort101" style="position:absolute;left:0px;bottom:0px;width:980px;height:100px;background-color:#000;" data-autocenter="1" data-scale-bottom="0.75">
+								<div data-u="slides">
+									<div data-u="prototype" class="p" style="width:190px;height:84px;">
+										<div data-u="thumbnailtemplate" class="t"></div>
+										<svg viewBox="0 0 16000 16000" class="cv">
+											<circle class="a" cx="8000" cy="8000" r="3238.1"></circle>
+											<line class="a" x1="6190.5" y1="8000" x2="9809.5" y2="8000"></line>
+											<line class="a" x1="8000" y1="9809.5" x2="8000" y2="6190.5"></line>
+										</svg>
+									</div>
+								</div>
+							</div>
+							<!-- Arrow Navigator -->
+							<div data-u="arrowleft" class="jssora106" style="width:55px;height:55px;top:162px;left:30px;" data-scale="0.75">
+								<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+									<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+									<polyline class="a" points="7930.4,5495.7 5426.1,8000 7930.4,10504.3 "></polyline>
+									<line class="a" x1="10573.9" y1="8000" x2="5426.1" y2="8000"></line>
+								</svg>
+							</div>
+							<div data-u="arrowright" class="jssora106" style="width:55px;height:55px;top:162px;right:30px;" data-scale="0.75">
+								<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+									<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+									<polyline class="a" points="8069.6,5495.7 10573.9,8000 8069.6,10504.3 "></polyline>
+									<line class="a" x1="5426.1" y1="8000" x2="10573.9" y2="8000"></line>
+								</svg>
+							</div>
+						</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ReactModalPortal" id="6-bedroom-suite-balcony">
+  <div class="ReactModal__Overlay ReactModal__Overlay--after-open" style="position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; background: rgba(0, 0, 0, 0.8);">
+    <div class="ReactModal__Content ReactModal__Content--after-open qa-room-info-modal room-info-modal gallery-modal" tabindex="-1" aria-label="Modal" style="overflow: hidden;">
+      <div class="room-info" data-element-name="room-info-popup">
+        <div class="close-area qa-room-info-close-area room-info-close-area">
+          <span class="close-area-icon ficon ficon-22 ficon-x-icon">
+          </span>
+        </div>
+        <div class="details">
+          <div class="details__header details__header_shadowed">
+            <p class="details__header-text" data-selenium="details__header-text">2-Bedroom Ocean-Facing Suite
+            </p>
+          </div>
+          <div class="details__info-area" style="height: calc(100% - 108px);">
+            <div class="details__info-area-block details__features details__info-area-block_padding-top" data-selenium="Features">
+              <p class="details__info-area-block-header">Features
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-sqm details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Room size: 78 m²/840 ft²
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-views details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Partial ocean view
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-balcony-terrace details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Balcony/terrace
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-shower details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Shower
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-kitchenette details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Kitchenette
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="details__info-area-block details__amenities details__info-area-block_padding-top details__info-area-block_prelined">
+              <p class="details__info-area-block-header">Bathroom and toiletries
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-bathrobes details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Bathrobes
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-hair-dryer  details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Hair dryer
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-mirror details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Mirror
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-toiletries details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Toiletries
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-towels details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Towels
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="details__info-area-block details__amenities">
+              <p class="details__info-area-block-header">Entertainment 
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-dvd-cd-player details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">DVD/CD player
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-free-wifi-in-all-rooms details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Free Wi-Fi in all rooms!
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-inhouse-movies details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">On-demand movies
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-satellite-television details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Satellite/cable channels
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-telephone details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Telephone
+                  </span>
+                </li>
+              </ul>
+            </div>
+           
+          </div>
+        </div>
+        <div class="gallery">
+          <div class="react-swipe-container swipe" style="visibility: visible;">
+            <div id="jssor_5" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:480px;overflow:hidden;visibility:hidden;">
+							<!-- Loading Screen -->
+							<div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+								<img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+							</div>
+							<div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
+								<div>
+									<img data-u="image" src="images/travel-4.jpg" />
+									<img data-u="thumb" src="images/travel-4.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-1.jpg" />
+									<img data-u="thumb" src="images/travel-1.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-2.jpg" />
+									<img data-u="thumb" src="images/travel-2.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-3.jpg" />
+									<img data-u="thumb" src="images/travel-3.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-5.jpg" />
+									<img data-u="thumb" src="images/travel-5.jpg" />
+								</div>
+								
+							</div>
+							<!-- Thumbnail Navigator -->
+							<div data-u="thumbnavigator" class="jssort101" style="position:absolute;left:0px;bottom:0px;width:980px;height:100px;background-color:#000;" data-autocenter="1" data-scale-bottom="0.75">
+								<div data-u="slides">
+									<div data-u="prototype" class="p" style="width:190px;height:84px;">
+										<div data-u="thumbnailtemplate" class="t"></div>
+										<svg viewBox="0 0 16000 16000" class="cv">
+											<circle class="a" cx="8000" cy="8000" r="3238.1"></circle>
+											<line class="a" x1="6190.5" y1="8000" x2="9809.5" y2="8000"></line>
+											<line class="a" x1="8000" y1="9809.5" x2="8000" y2="6190.5"></line>
+										</svg>
+									</div>
+								</div>
+							</div>
+							<!-- Arrow Navigator -->
+							<div data-u="arrowleft" class="jssora106" style="width:55px;height:55px;top:162px;left:30px;" data-scale="0.75">
+								<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+									<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+									<polyline class="a" points="7930.4,5495.7 5426.1,8000 7930.4,10504.3 "></polyline>
+									<line class="a" x1="10573.9" y1="8000" x2="5426.1" y2="8000"></line>
+								</svg>
+							</div>
+							<div data-u="arrowright" class="jssora106" style="width:55px;height:55px;top:162px;right:30px;" data-scale="0.75">
+								<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+									<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+									<polyline class="a" points="8069.6,5495.7 10573.9,8000 8069.6,10504.3 "></polyline>
+									<line class="a" x1="5426.1" y1="8000" x2="10573.9" y2="8000"></line>
+								</svg>
+							</div>
+						</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ReactModalPortal" id="7-bedroom-suite-balcony">
+  <div class="ReactModal__Overlay ReactModal__Overlay--after-open" style="position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; background: rgba(0, 0, 0, 0.8);">
+    <div class="ReactModal__Content ReactModal__Content--after-open qa-room-info-modal room-info-modal gallery-modal" tabindex="-1" aria-label="Modal" style="overflow: hidden;">
+      <div class="room-info" data-element-name="room-info-popup">
+        <div class="close-area qa-room-info-close-area room-info-close-area">
+          <span class="close-area-icon ficon ficon-22 ficon-x-icon">
+          </span>
+        </div>
+        <div class="details">
+          <div class="details__header details__header_shadowed">
+            <p class="details__header-text" data-selenium="details__header-text">2-Bedroom Ocean-Facing Suite
+            </p>
+          </div>
+          <div class="details__info-area" style="height: calc(100% - 108px);">
+            <div class="details__info-area-block details__features details__info-area-block_padding-top" data-selenium="Features">
+              <p class="details__info-area-block-header">Features
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-sqm details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Room size: 78 m²/840 ft²
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-views details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Partial ocean view
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-balcony-terrace details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Balcony/terrace
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-shower details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Shower
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-kitchenette details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Kitchenette
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="details__info-area-block details__amenities details__info-area-block_padding-top details__info-area-block_prelined">
+              <p class="details__info-area-block-header">Bathroom and toiletries
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-bathrobes details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Bathrobes
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-hair-dryer  details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Hair dryer
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-mirror details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Mirror
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-toiletries details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Toiletries
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-towels details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Towels
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="details__info-area-block details__amenities">
+              <p class="details__info-area-block-header">Entertainment 
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-dvd-cd-player details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">DVD/CD player
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-free-wifi-in-all-rooms details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Free Wi-Fi in all rooms!
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-inhouse-movies details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">On-demand movies
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-satellite-television details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Satellite/cable channels
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-telephone details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Telephone
+                  </span>
+                </li>
+              </ul>
+            </div>
+           
+          </div>
+        </div>
+        <div class="gallery">
+          <div class="react-swipe-container swipe" style="visibility: visible;">
+            <div id="jssor_6" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:480px;overflow:hidden;visibility:hidden;">
+							<!-- Loading Screen -->
+							<div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+								<img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+							</div>
+							<div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
+								<div>
+									<img data-u="image" src="images/travel-4.jpg" />
+									<img data-u="thumb" src="images/travel-4.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-1.jpg" />
+									<img data-u="thumb" src="images/travel-1.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-2.jpg" />
+									<img data-u="thumb" src="images/travel-2.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-3.jpg" />
+									<img data-u="thumb" src="images/travel-3.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-5.jpg" />
+									<img data-u="thumb" src="images/travel-5.jpg" />
+								</div>
+								
+							</div>
+							<!-- Thumbnail Navigator -->
+							<div data-u="thumbnavigator" class="jssort101" style="position:absolute;left:0px;bottom:0px;width:980px;height:100px;background-color:#000;" data-autocenter="1" data-scale-bottom="0.75">
+								<div data-u="slides">
+									<div data-u="prototype" class="p" style="width:190px;height:84px;">
+										<div data-u="thumbnailtemplate" class="t"></div>
+										<svg viewBox="0 0 16000 16000" class="cv">
+											<circle class="a" cx="8000" cy="8000" r="3238.1"></circle>
+											<line class="a" x1="6190.5" y1="8000" x2="9809.5" y2="8000"></line>
+											<line class="a" x1="8000" y1="9809.5" x2="8000" y2="6190.5"></line>
+										</svg>
+									</div>
+								</div>
+							</div>
+							<!-- Arrow Navigator -->
+							<div data-u="arrowleft" class="jssora106" style="width:55px;height:55px;top:162px;left:30px;" data-scale="0.75">
+								<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+									<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+									<polyline class="a" points="7930.4,5495.7 5426.1,8000 7930.4,10504.3 "></polyline>
+									<line class="a" x1="10573.9" y1="8000" x2="5426.1" y2="8000"></line>
+								</svg>
+							</div>
+							<div data-u="arrowright" class="jssora106" style="width:55px;height:55px;top:162px;right:30px;" data-scale="0.75">
+								<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+									<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+									<polyline class="a" points="8069.6,5495.7 10573.9,8000 8069.6,10504.3 "></polyline>
+									<line class="a" x1="5426.1" y1="8000" x2="10573.9" y2="8000"></line>
+								</svg>
+							</div>
+						</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ReactModalPortal" id="8-bedroom-suite-balcony">
+  <div class="ReactModal__Overlay ReactModal__Overlay--after-open" style="position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; background: rgba(0, 0, 0, 0.8);">
+    <div class="ReactModal__Content ReactModal__Content--after-open qa-room-info-modal room-info-modal gallery-modal" tabindex="-1" aria-label="Modal" style="overflow: hidden;">
+      <div class="room-info" data-element-name="room-info-popup">
+        <div class="close-area qa-room-info-close-area room-info-close-area">
+          <span class="close-area-icon ficon ficon-22 ficon-x-icon">
+          </span>
+        </div>
+        <div class="details">
+          <div class="details__header details__header_shadowed">
+            <p class="details__header-text" data-selenium="details__header-text">2-Bedroom Ocean-Facing Suite
+            </p>
+          </div>
+          <div class="details__info-area" style="height: calc(100% - 108px);">
+            <div class="details__info-area-block details__features details__info-area-block_padding-top" data-selenium="Features">
+              <p class="details__info-area-block-header">Features
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-sqm details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Room size: 78 m²/840 ft²
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-views details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Partial ocean view
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-balcony-terrace details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Balcony/terrace
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-shower details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Shower
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-kitchenette details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Kitchenette
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="details__info-area-block details__amenities details__info-area-block_padding-top details__info-area-block_prelined">
+              <p class="details__info-area-block-header">Bathroom and toiletries
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-bathrobes details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Bathrobes
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-hair-dryer  details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Hair dryer
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-mirror details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Mirror
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-toiletries details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Toiletries
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-towels details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Towels
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="details__info-area-block details__amenities">
+              <p class="details__info-area-block-header">Entertainment 
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-dvd-cd-player details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">DVD/CD player
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-free-wifi-in-all-rooms details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Free Wi-Fi in all rooms!
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-inhouse-movies details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">On-demand movies
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-satellite-television details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Satellite/cable channels
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-telephone details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Telephone
+                  </span>
+                </li>
+              </ul>
+            </div>
+           
+          </div>
+        </div>
+        <div class="gallery">
+          <div class="react-swipe-container swipe" style="visibility: visible;">
+            <div id="jssor_7" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:480px;overflow:hidden;visibility:hidden;">
+							<!-- Loading Screen -->
+							<div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+								<img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+							</div>
+							<div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
+								<div>
+									<img data-u="image" src="images/travel-4.jpg" />
+									<img data-u="thumb" src="images/travel-4.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-1.jpg" />
+									<img data-u="thumb" src="images/travel-1.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-2.jpg" />
+									<img data-u="thumb" src="images/travel-2.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-3.jpg" />
+									<img data-u="thumb" src="images/travel-3.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-5.jpg" />
+									<img data-u="thumb" src="images/travel-5.jpg" />
+								</div>
+								
+							</div>
+							<!-- Thumbnail Navigator -->
+							<div data-u="thumbnavigator" class="jssort101" style="position:absolute;left:0px;bottom:0px;width:980px;height:100px;background-color:#000;" data-autocenter="1" data-scale-bottom="0.75">
+								<div data-u="slides">
+									<div data-u="prototype" class="p" style="width:190px;height:84px;">
+										<div data-u="thumbnailtemplate" class="t"></div>
+										<svg viewBox="0 0 16000 16000" class="cv">
+											<circle class="a" cx="8000" cy="8000" r="3238.1"></circle>
+											<line class="a" x1="6190.5" y1="8000" x2="9809.5" y2="8000"></line>
+											<line class="a" x1="8000" y1="9809.5" x2="8000" y2="6190.5"></line>
+										</svg>
+									</div>
+								</div>
+							</div>
+							<!-- Arrow Navigator -->
+							<div data-u="arrowleft" class="jssora106" style="width:55px;height:55px;top:162px;left:30px;" data-scale="0.75">
+								<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+									<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+									<polyline class="a" points="7930.4,5495.7 5426.1,8000 7930.4,10504.3 "></polyline>
+									<line class="a" x1="10573.9" y1="8000" x2="5426.1" y2="8000"></line>
+								</svg>
+							</div>
+							<div data-u="arrowright" class="jssora106" style="width:55px;height:55px;top:162px;right:30px;" data-scale="0.75">
+								<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+									<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+									<polyline class="a" points="8069.6,5495.7 10573.9,8000 8069.6,10504.3 "></polyline>
+									<line class="a" x1="5426.1" y1="8000" x2="10573.9" y2="8000"></line>
+								</svg>
+							</div>
+						</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ReactModalPortal" id="9-bedroom-suite-balcony">
+  <div class="ReactModal__Overlay ReactModal__Overlay--after-open" style="position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; background: rgba(0, 0, 0, 0.8);">
+    <div class="ReactModal__Content ReactModal__Content--after-open qa-room-info-modal room-info-modal gallery-modal" tabindex="-1" aria-label="Modal" style="overflow: hidden;">
+      <div class="room-info" data-element-name="room-info-popup">
+        <div class="close-area qa-room-info-close-area room-info-close-area">
+          <span class="close-area-icon ficon ficon-22 ficon-x-icon">
+          </span>
+        </div>
+        <div class="details">
+          <div class="details__header details__header_shadowed">
+            <p class="details__header-text" data-selenium="details__header-text">2-Bedroom Ocean-Facing Suite
+            </p>
+          </div>
+          <div class="details__info-area" style="height: calc(100% - 108px);">
+            <div class="details__info-area-block details__features details__info-area-block_padding-top" data-selenium="Features">
+              <p class="details__info-area-block-header">Features
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-sqm details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Room size: 78 m²/840 ft²
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-views details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Partial ocean view
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-balcony-terrace details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Balcony/terrace
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-shower details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Shower
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-kitchenette details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Kitchenette
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="details__info-area-block details__amenities details__info-area-block_padding-top details__info-area-block_prelined">
+              <p class="details__info-area-block-header">Bathroom and toiletries
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-bathrobes details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Bathrobes
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-hair-dryer  details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Hair dryer
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-mirror details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Mirror
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-toiletries details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Toiletries
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-towels details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Towels
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="details__info-area-block details__amenities">
+              <p class="details__info-area-block-header">Entertainment 
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-dvd-cd-player details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">DVD/CD player
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-free-wifi-in-all-rooms details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Free Wi-Fi in all rooms!
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-inhouse-movies details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">On-demand movies
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-satellite-television details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Satellite/cable channels
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-telephone details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Telephone
+                  </span>
+                </li>
+              </ul>
+            </div>
+           
+          </div>
+        </div>
+        <div class="gallery">
+          <div class="react-swipe-container swipe" style="visibility: visible;">
+            <div id="jssor_8" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:480px;overflow:hidden;visibility:hidden;">
+							<!-- Loading Screen -->
+							<div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+								<img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+							</div>
+							<div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
+								<div>
+									<img data-u="image" src="images/travel-4.jpg" />
+									<img data-u="thumb" src="images/travel-4.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-1.jpg" />
+									<img data-u="thumb" src="images/travel-1.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-2.jpg" />
+									<img data-u="thumb" src="images/travel-2.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-3.jpg" />
+									<img data-u="thumb" src="images/travel-3.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-5.jpg" />
+									<img data-u="thumb" src="images/travel-5.jpg" />
+								</div>
+								
+							</div>
+							<!-- Thumbnail Navigator -->
+							<div data-u="thumbnavigator" class="jssort101" style="position:absolute;left:0px;bottom:0px;width:980px;height:100px;background-color:#000;" data-autocenter="1" data-scale-bottom="0.75">
+								<div data-u="slides">
+									<div data-u="prototype" class="p" style="width:190px;height:84px;">
+										<div data-u="thumbnailtemplate" class="t"></div>
+										<svg viewBox="0 0 16000 16000" class="cv">
+											<circle class="a" cx="8000" cy="8000" r="3238.1"></circle>
+											<line class="a" x1="6190.5" y1="8000" x2="9809.5" y2="8000"></line>
+											<line class="a" x1="8000" y1="9809.5" x2="8000" y2="6190.5"></line>
+										</svg>
+									</div>
+								</div>
+							</div>
+							<!-- Arrow Navigator -->
+							<div data-u="arrowleft" class="jssora106" style="width:55px;height:55px;top:162px;left:30px;" data-scale="0.75">
+								<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+									<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+									<polyline class="a" points="7930.4,5495.7 5426.1,8000 7930.4,10504.3 "></polyline>
+									<line class="a" x1="10573.9" y1="8000" x2="5426.1" y2="8000"></line>
+								</svg>
+							</div>
+							<div data-u="arrowright" class="jssora106" style="width:55px;height:55px;top:162px;right:30px;" data-scale="0.75">
+								<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+									<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+									<polyline class="a" points="8069.6,5495.7 10573.9,8000 8069.6,10504.3 "></polyline>
+									<line class="a" x1="5426.1" y1="8000" x2="10573.9" y2="8000"></line>
+								</svg>
+							</div>
+						</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ReactModalPortal" id="10-bedroom-suite-balcony">
+  <div class="ReactModal__Overlay ReactModal__Overlay--after-open" style="position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; background: rgba(0, 0, 0, 0.8);">
+    <div class="ReactModal__Content ReactModal__Content--after-open qa-room-info-modal room-info-modal gallery-modal" tabindex="-1" aria-label="Modal" style="overflow: hidden;">
+      <div class="room-info" data-element-name="room-info-popup">
+        <div class="close-area qa-room-info-close-area room-info-close-area">
+          <span class="close-area-icon ficon ficon-22 ficon-x-icon">
+          </span>
+        </div>
+        <div class="details">
+          <div class="details__header details__header_shadowed">
+            <p class="details__header-text" data-selenium="details__header-text">2-Bedroom Ocean-Facing Suite
+            </p>
+          </div>
+          <div class="details__info-area" style="height: calc(100% - 108px);">
+            <div class="details__info-area-block details__features details__info-area-block_padding-top" data-selenium="Features">
+              <p class="details__info-area-block-header">Features
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-sqm details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Room size: 78 m²/840 ft²
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-views details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Partial ocean view
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-balcony-terrace details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Balcony/terrace
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-shower details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Shower
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-kitchenette details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Kitchenette
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="details__info-area-block details__amenities details__info-area-block_padding-top details__info-area-block_prelined">
+              <p class="details__info-area-block-header">Bathroom and toiletries
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-bathrobes details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Bathrobes
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-hair-dryer  details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Hair dryer
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-mirror details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Mirror
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-toiletries details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Toiletries
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-towels details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Towels
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="details__info-area-block details__amenities">
+              <p class="details__info-area-block-header">Entertainment 
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-dvd-cd-player details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">DVD/CD player
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-free-wifi-in-all-rooms details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Free Wi-Fi in all rooms!
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-inhouse-movies details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">On-demand movies
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-satellite-television details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Satellite/cable channels
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-telephone details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Telephone
+                  </span>
+                </li>
+              </ul>
+            </div>
+           
+          </div>
+        </div>
+        <div class="gallery">
+          <div class="react-swipe-container swipe" style="visibility: visible;">
+             <div id="jssor_9" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:480px;overflow:hidden;visibility:hidden;">
+							<!-- Loading Screen -->
+							<div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+								<img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+							</div>
+							<div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
+								<div>
+									<img data-u="image" src="images/travel-4.jpg" />
+									<img data-u="thumb" src="images/travel-4.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-1.jpg" />
+									<img data-u="thumb" src="images/travel-1.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-2.jpg" />
+									<img data-u="thumb" src="images/travel-2.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-3.jpg" />
+									<img data-u="thumb" src="images/travel-3.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-5.jpg" />
+									<img data-u="thumb" src="images/travel-5.jpg" />
+								</div>
+								
+							</div>
+							<!-- Thumbnail Navigator -->
+							<div data-u="thumbnavigator" class="jssort101" style="position:absolute;left:0px;bottom:0px;width:980px;height:100px;background-color:#000;" data-autocenter="1" data-scale-bottom="0.75">
+								<div data-u="slides">
+									<div data-u="prototype" class="p" style="width:190px;height:84px;">
+										<div data-u="thumbnailtemplate" class="t"></div>
+										<svg viewBox="0 0 16000 16000" class="cv">
+											<circle class="a" cx="8000" cy="8000" r="3238.1"></circle>
+											<line class="a" x1="6190.5" y1="8000" x2="9809.5" y2="8000"></line>
+											<line class="a" x1="8000" y1="9809.5" x2="8000" y2="6190.5"></line>
+										</svg>
+									</div>
+								</div>
+							</div>
+							<!-- Arrow Navigator -->
+							<div data-u="arrowleft" class="jssora106" style="width:55px;height:55px;top:162px;left:30px;" data-scale="0.75">
+								<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+									<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+									<polyline class="a" points="7930.4,5495.7 5426.1,8000 7930.4,10504.3 "></polyline>
+									<line class="a" x1="10573.9" y1="8000" x2="5426.1" y2="8000"></line>
+								</svg>
+							</div>
+							<div data-u="arrowright" class="jssora106" style="width:55px;height:55px;top:162px;right:30px;" data-scale="0.75">
+								<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+									<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+									<polyline class="a" points="8069.6,5495.7 10573.9,8000 8069.6,10504.3 "></polyline>
+									<line class="a" x1="5426.1" y1="8000" x2="10573.9" y2="8000"></line>
+								</svg>
+							</div>
+						</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ReactModalPortal" id="11-bedroom-suite-balcony">
+  <div class="ReactModal__Overlay ReactModal__Overlay--after-open" style="position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; background: rgba(0, 0, 0, 0.8);">
+    <div class="ReactModal__Content ReactModal__Content--after-open qa-room-info-modal room-info-modal gallery-modal" tabindex="-1" aria-label="Modal" style="overflow: hidden;">
+      <div class="room-info" data-element-name="room-info-popup">
+        <div class="close-area qa-room-info-close-area room-info-close-area">
+          <span class="close-area-icon ficon ficon-22 ficon-x-icon">
+          </span>
+        </div>
+        <div class="details">
+          <div class="details__header details__header_shadowed">
+            <p class="details__header-text" data-selenium="details__header-text">2-Bedroom Ocean-Facing Suite
+            </p>
+          </div>
+          <div class="details__info-area" style="height: calc(100% - 108px);">
+            <div class="details__info-area-block details__features details__info-area-block_padding-top" data-selenium="Features">
+              <p class="details__info-area-block-header">Features
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-sqm details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Room size: 78 m²/840 ft²
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-views details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Partial ocean view
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-balcony-terrace details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Balcony/terrace
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-shower details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Shower
+                  </span>
+                </li>
+                <li class="details__features-item">
+                  <i class="ficon ficon-18 ficon-kitchenette details__features-item-icon">
+                  </i>
+                  <span class="details__features-item-description">Kitchenette
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="details__info-area-block details__amenities details__info-area-block_padding-top details__info-area-block_prelined">
+              <p class="details__info-area-block-header">Bathroom and toiletries
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-bathrobes details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Bathrobes
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-hair-dryer  details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Hair dryer
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-mirror details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Mirror
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-toiletries details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Toiletries
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-towels details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Towels
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="details__info-area-block details__amenities">
+              <p class="details__info-area-block-header">Entertainment 
+              </p>
+              <ul class="details__info-area-block-list">
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-dvd-cd-player details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">DVD/CD player
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-free-wifi-in-all-rooms details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Free Wi-Fi in all rooms!
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-inhouse-movies details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">On-demand movies
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-satellite-television details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Satellite/cable channels
+                  </span>
+                </li>
+                <li class="details__amenities-item">
+                  <i class="ficon ficon-18 ficon-telephone details__amenities-item-icon">
+                  </i>
+                  <span class="details__amenities-item-description">Telephone
+                  </span>
+                </li>
+              </ul>
+            </div>
+           
+          </div>
+        </div>
+        <div class="gallery">
+          <div class="react-swipe-container swipe" style="visibility: visible;">
+            <div id="jssor_10" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:480px;overflow:hidden;visibility:hidden;">
+							<!-- Loading Screen -->
+							<div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+								<img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+							</div>
+							<div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
+								<div>
+									<img data-u="image" src="images/travel-4.jpg" />
+									<img data-u="thumb" src="images/travel-4.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-1.jpg" />
+									<img data-u="thumb" src="images/travel-1.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-2.jpg" />
+									<img data-u="thumb" src="images/travel-2.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-3.jpg" />
+									<img data-u="thumb" src="images/travel-3.jpg" />
+								</div>
+								<div>
+									<img data-u="image" src="images/travel-5.jpg" />
+									<img data-u="thumb" src="images/travel-5.jpg" />
+								</div>
+								
+							</div>
+							<!-- Thumbnail Navigator -->
+							<div data-u="thumbnavigator" class="jssort101" style="position:absolute;left:0px;bottom:0px;width:980px;height:100px;background-color:#000;" data-autocenter="1" data-scale-bottom="0.75">
+								<div data-u="slides">
+									<div data-u="prototype" class="p" style="width:190px;height:84px;">
+										<div data-u="thumbnailtemplate" class="t"></div>
+										<svg viewBox="0 0 16000 16000" class="cv">
+											<circle class="a" cx="8000" cy="8000" r="3238.1"></circle>
+											<line class="a" x1="6190.5" y1="8000" x2="9809.5" y2="8000"></line>
+											<line class="a" x1="8000" y1="9809.5" x2="8000" y2="6190.5"></line>
+										</svg>
+									</div>
+								</div>
+							</div>
+							<!-- Arrow Navigator -->
+							<div data-u="arrowleft" class="jssora106" style="width:55px;height:55px;top:162px;left:30px;" data-scale="0.75">
+								<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+									<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+									<polyline class="a" points="7930.4,5495.7 5426.1,8000 7930.4,10504.3 "></polyline>
+									<line class="a" x1="10573.9" y1="8000" x2="5426.1" y2="8000"></line>
+								</svg>
+							</div>
+							<div data-u="arrowright" class="jssora106" style="width:55px;height:55px;top:162px;right:30px;" data-scale="0.75">
+								<svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+									<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+									<polyline class="a" points="8069.6,5495.7 10573.9,8000 8069.6,10504.3 "></polyline>
+									<line class="a" x1="5426.1" y1="8000" x2="10573.9" y2="8000"></line>
+								</svg>
+							</div>
+						</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/jssor.slider.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="css/datepicker/bootstrap-datepicker.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<script src="js/agency.min.js"></script>
+<script src="dfgdgjs/agency.min.js"></script>
+<script src="js/jssor.js"></script>
+  <script type="text/javascript">jssor_1_slider_init();</script>
+  <script type="text/javascript">jssor_2_slider_init();</script>
+  <script type="text/javascript">jssor_3_slider_init();</script>
+  <script type="text/javascript">jssor_4_slider_init();</script>
+  <script type="text/javascript">jssor_5_slider_init();</script>
+  <script type="text/javascript">jssor_6_slider_init();</script>
+  <script type="text/javascript">jssor_7_slider_init();</script>
+  <script type="text/javascript">jssor_8_slider_init();</script>
+  <script type="text/javascript">jssor_9_slider_init();</script>
+  <script type="text/javascript">jssor_10_slider_init();</script>
+<script>
+$('.demo-1,.demo-2,.demo-3').datepicker();
+$('.click_show_date').click(function(){
+	$('.check_in_date').trigger('focus');
+});
+</script>
+
+<script>
+   function changeValue(o){
+     document.getElementById('type').value=o.innerHTML;
+    }
+</script>
 <script type="text/javascript">
 $(document).ready(function(){
     $(".tophead").affix({
@@ -850,6 +2890,34 @@ $(document).ready(function(){
     });
 	$('.menu-open').click(function(){
 	$('.nav-mobile').toggle();
+	});
+	$('textarea#type').click(function(){
+	   $('.room_type_picker').toggleClass('picker-open');
+	});
+	$('.Popup__content span').click(function(){
+	  $('.room_type_picker').removeClass('picker-open');
+	});
+	$('.room-image-holder').on('click', function(){
+	 var tab_id = $(this).attr('data-type');
+	     $('.room-image-holder').removeClass('active');
+	     $('.ReactModalPortal').removeClass('popup-open');
+		 
+		 $(this).addClass('active');
+		 $("#"+tab_id).addClass('popup-open');
+		 
+	});
+	$('span.close-area-icon').click(function(){
+	   $('.ReactModalPortal').removeClass('popup-open');
+	   $('.room-image-holder').removeClass('active');
+	});
+	$('.thumbnail-wrapper').on('click', function(){
+	 var tab_an = $(this).attr('data-tab');
+	     $('.thumbnail-wrapper').removeClass('active');
+	     $('.swipe-element').removeClass('active');
+		 
+		 $(this).addClass('active');
+		 $("#"+tab_an).addClass('active');
+		 
 	});
 });
 </script>
@@ -900,8 +2968,14 @@ jQuery('a[href^="#"]').on('click',function(){
 });
  
 }(jQuery));
+$(window).scroll(function(){
+    if ($(this).scrollTop() > 510) {
+       $('.hotel-check-color').addClass('sticky-search');
+    } else {
+       $('.hotel-check-color').removeClass('sticky-search');
+    }
+});
 </script>
 
-</head>
 </body>
 </html>
