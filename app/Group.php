@@ -20,6 +20,7 @@ class Group extends Model
         'seo_description',
         'seo_keyword',
         'detail',
+        'detail_weather',
         'parent_id',
         'tags',
         'rcount',

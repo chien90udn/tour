@@ -120,8 +120,19 @@ class GroupController extends Controller
         $data['rorder'] = 0;
 
 
-        $group->update($data);
+        for($i=0;$i<intval($data["title"]);$i++){ $g = $i+1;
+            $title          = strip_tags($data["title"][$i],"<a>,<b>,<i>,<u>");
+            $detail_weather = strip_tags($data["detail_weather"][$i],"<a>,<b>,<i>,<u>,<p>,<br>");
 
+            if($i==0){
+                $data["detail_weather"] = $title."{SUB_SPLIT}".$detail_weather;
+            }else{
+                $data["detail_weather"] = $data["detail_weather"]."{SPLIT}".$title."{SUB_SPLIT}".$detail_weather;
+            }
+        }
+
+
+        $group->update($data);
 
         flash('Group updated.', 'success');
 

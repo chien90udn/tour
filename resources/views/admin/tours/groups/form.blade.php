@@ -84,6 +84,41 @@
                     @endif
                 </div>
 
+                @php
+                    $arr_iti = explode("{SPLIT}",$group->detail_weather);
+                @endphp
+
+                @for($i=1 ; $i <= 12 ; $i++)
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#day{{ $i }}" data-toggle="tab" aria-expanded="true">
+                            <span class="visible-xs"><i class="fa fa-home"></i></span>
+                            <span class="hidden-xs">Month {{ $i }}</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    @php $arr_each = explode("{SUB_SPLIT}",@$arr_iti[$i-1]); @endphp
+                    <div class="tab-pane active" id="day{{ $i }}">
+                        <div class="form-group{{ $errors->has('title[]') ? ' has-error' : '' }}">
+                            <label for="meal[]">Title</label>
+                            <input type="text" name="title[]" id="title[]" value="{{ old('title[]', @$arr_each[0]) }}" class="form-control" placeholder="Enter title here">
+                            @if($errors->has('title[]'))
+                                <div class="help-block text-danger">{{ $errors->first('title[]') }}</div>
+                            @endif
+                        </div>
+                        <div class="form-group {{ $errors->has('detail_tour[]') ? ' has-error' : '' }}">
+                            <label for="detail_weather[]">Detailed weather</label>
+                            <textarea name="detail_weather[]" id="detail_weather[]" rows="4" class="form-control simple_editor">{{ old('detail_weather[]', @$arr_each[1]) }}</textarea>
+                            @if($errors->has('detail_weather[]'))
+                                <div class="help-block text-danger">{{ $errors->first('detail_weather[]') }}</div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @endfor
+
             </div>
         </div>
     </div>
